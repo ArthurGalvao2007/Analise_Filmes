@@ -1,4 +1,6 @@
-Sobre o Projeto
+SOBRE O PROJETO
+
+
 Este projeto consiste em um dashboard interativo desenvolvido para a análise de dados cinematográficos. O objetivo principal é fornecer insights visuais sobre o desempenho de filmes, tendências de gêneros, avaliações de público/crítica e métricas de bilheteria, facilitando a tomada de decisão ou o estudo do mercado audiovisual.
 
 Como o Dashboard foi Construído
