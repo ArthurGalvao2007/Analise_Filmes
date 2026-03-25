@@ -1,0 +1,27 @@
+{
+  "name": "Custom",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspacePane": [
+          {
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  },
+  "dataColors": [
+    "#000000",
+    "#3F3F3F",
+    "#6F6F6F",
+    "#8C8C8C",
+    "#BBBBBB",
+    "#D5D5D5",
+    "#F1F1F1",
+    "#FFFFFF"
+  ],
+  "bad": "#4A0008",
+  "neutral": "#737F97",
+  "good": "#3F6248"
+}

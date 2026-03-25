@@ -1,0 +1,304 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Ir pra pagina inicial(2)",
+  "name": "06d1c96663bd64781abc",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "480eba75052a0e595339",
+    "sections": {
+      "480eba75052a0e595339": {
+        "visualContainers": {
+          "86a533122f1970d90979": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ddc191a5442434817a5d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "6fc5f8cb67873f476cc2": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ad3fb546c65e8d494b1e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "8017393842c7f41e2798": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "eb336e188346df538ef9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1d55c9a7ec33214d6b93",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Resultado_Financeiro_Total"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Resultado_Financeiro_Total"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "14ee69a767491df9a999": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4aecc9f81d0d164b74e0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Total_Filmes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Total_Filmes"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a7baddd9e0417a469f0a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0b2b42d90b413e933e8f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Media_Nota"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Media_Nota"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "00a1acf34353eef2ac87": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7753d7c26293c7dc48b0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "1mdb_movies"
+                            }
+                          },
+                          "Property": "oscar"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "1mdb_movies"
+                            }
+                          },
+                          "Property": "oscar"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "373c7c33961789467245": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "01b91ebb76302af67f62",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a7b5e97d5f94e3da017c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Lucro_Financeiro_Total"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Lucro_Financeiro_Total"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

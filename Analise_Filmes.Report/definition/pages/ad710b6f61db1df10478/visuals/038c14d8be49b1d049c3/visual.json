@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "038c14d8be49b1d049c3",
+  "position": {
+    "x": 712.5,
+    "y": 157.5,
+    "z": 8001,
+    "height": 451.25,
+    "width": 480,
+    "tabOrder": 8001
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1mdb_movies"
+                    }
+                  },
+                  "Property": "Genero"
+                }
+              },
+              "queryRef": "1mdb_movies.Genero",
+              "nativeQueryRef": "Genero",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1mdb_movies"
+                    }
+                  },
+                  "Property": "Media_Nota"
+                }
+              },
+              "queryRef": "1mdb_movies.Media_Nota",
+              "nativeQueryRef": "Media_Nota"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Media Notas dos Generos'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "398123244923398d6b75",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "1mdb_movies"
+              }
+            },
+            "Property": "Genero"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "96c539f91c9898672979",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "1mdb_movies"
+              }
+            },
+            "Property": "Media_Nota"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

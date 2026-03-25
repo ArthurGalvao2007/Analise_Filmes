@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "2290d0fbfcaa6e9189c7",
+  "position": {
+    "x": 251.25,
+    "y": 105,
+    "z": 8000,
+    "height": 255,
+    "width": 282.5,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1mdb_movies"
+                    }
+                  },
+                  "Property": "star"
+                }
+              },
+              "queryRef": "1mdb_movies.star",
+              "nativeQueryRef": "star",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "oscar"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(1mdb_movies.oscar)",
+              "nativeQueryRef": "Soma de oscar"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "1mdb_movies"
+                      }
+                    },
+                    "Property": "oscar"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Estrelas Com Mais Oscar'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "86ce2e4fb1bbc4209c84",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "1mdb_movies"
+                  }
+                },
+                "Property": "oscar"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "37eab584ec7506b57420",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "1mdb_movies"
+              }
+            },
+            "Property": "star"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

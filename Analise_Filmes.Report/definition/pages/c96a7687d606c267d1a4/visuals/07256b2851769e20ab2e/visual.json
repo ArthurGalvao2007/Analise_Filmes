@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "07256b2851769e20ab2e",
+  "position": {
+    "x": 582.5,
+    "y": 105,
+    "z": 9000,
+    "height": 255,
+    "width": 282.5,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1mdb_movies"
+                    }
+                  },
+                  "Property": "director"
+                }
+              },
+              "queryRef": "1mdb_movies.director",
+              "nativeQueryRef": "director",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "1mdb_movies"
+                        }
+                      },
+                      "Property": "oscar"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(1mdb_movies.oscar)",
+              "nativeQueryRef": "Soma de oscar"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "1mdb_movies"
+                      }
+                    },
+                    "Property": "oscar"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Diretores Com Mais Oscar'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8ba039c08f007de9f2db",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "1mdb_movies"
+                  }
+                },
+                "Property": "oscar"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b66f294f63c92b53376f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "1mdb_movies"
+              }
+            },
+            "Property": "director"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+table DimData
+	lineageTag: fa6f332d-346f-4e9d-a21a-322cfa85728a
+
+	column ID
+		dataType: string
+		lineageTag: da4d4ddc-1ec5-4068-92d4-f52d4b087dce
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a7515b9-df95-4f52-a186-fee301d65ff6
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Índice
+		dataType: int64
+		formatString: 0
+		lineageTag: 88a53b43-efd6-4b68-839b-a283c0a2f601
+		summarizeBy: none
+		sourceColumn: Índice
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimData = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\arthu\Downloads\Analise_Filmes_BI-master\Analise_Filmes_BI-master\filmes_nova - world_imdb_movies_top_movies_per_year.csv"),[Delimiter=",", Columns=24, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"", type text}, {"_1", type text}, {"_2", type text}, {"_3", type text}, {"_4", type text}, {"_5", type text}, {"_6", type text}, {"_7", type text}, {"_8", type text}, {"_9", type text}, {"_10", type text}, {"_11", type text}, {"_12", type text}, {"_13", type text}, {"_14", type text}, {"_15", type text}, {"_16", type text}, {"_17", type text}, {"_18", type text}, {"_19", type text}, {"_20", type text}, {"_21", type text}, {"_22", type text}, {"_23", type text}}),
+				    #"Cabeçalhos Promovidos1" = Table.PromoteHeaders(#"Tipo Alterado", [PromoteAllScalars=true]),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos1",{{"", type text}, {"_1", type text}, {"_2", type text}, {"_3", type text}, {"_4", type text}, {"_5", type text}, {"_6", type text}, {"_7", type text}, {"_8", type text}, {"_9", type text}, {"_10", type text}, {"_11", type text}, {"_12", type text}, {"_13", type text}, {"_14", type text}, {"_15", type text}, {"_16", type text}, {"_17", type text}, {"_18", type text}, {"_19", type text}, {"_20", type text}, {"_21", type text}, {"_22", type text}, {"_23", type text}}),
+				    #"Cabeçalhos Promovidos2" = Table.PromoteHeaders(#"Tipo Alterado1", [PromoteAllScalars=true]),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos2",{{"id", type text}, {"title", type text}, {"link", type text}, {"year", Int64.Type}, {"duration", type text}, {"rating_mpa", type text}, {"rating_imdb", Int64.Type}, {"vote", Int64.Type}, {"budget", Int64.Type}, {"gross_world_wide", Int64.Type}, {"gross_us_canada", Currency.Type}, {"gross_opening_weekend", Int64.Type}, {"director", type text}, {"writer", type text}, {"star", type text}, {"genre", type text}, {"country_origin", type text}, {"filming_location", type text}, {"production_company", type text}, {"language", type text}, {"captions", type text}, {"win", Int64.Type}, {"nomination", Int64.Type}, {"oscar", Int64.Type}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado2",{"link", "captions"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Colunas Removidas", {"id"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Duplicatas Removidas",{{"id", "ID"}, {"title", "Titulo"}, {"year", "Ano"}, {"duration", "Duração"}, {"genre", "Genero"}, {"country_origin", "Regiao_Filme"}}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Ano", Int64.Type}, {"budget", Currency.Type}, {"gross_world_wide", Currency.Type}, {"gross_us_canada", Currency.Type}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado3", each true),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Linhas Filtradas",{{"Titulo", "Titulo"}}),
+				    #"Texto em Maiúscula" = Table.TransformColumns(#"Colunas Renomeadas1",{{"Titulo", Text.Upper, type text}}),
+				    #"Texto Extraído Antes do Delimitador" = Table.TransformColumns(#"Texto em Maiúscula", {{"Genero", each Text.BeforeDelimiter(_, ","), type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Texto Extraído Antes do Delimitador", each [rating_imdb] <> null and [rating_imdb] <> ""),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linhas Filtradas1", "Duração", "Duração - Copiar"),
+				    #"Colunas Renomeadas2" = Table.RenameColumns(#"Coluna Duplicada",{{"Duração - Copiar", "Duracao_minutos"}}),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Colunas Renomeadas2",{"ID", "Titulo", "Ano", "Duração", "Duracao_minutos", "rating_mpa", "rating_imdb", "vote", "budget", "gross_world_wide", "gross_us_canada", "gross_opening_weekend", "director", "writer", "star", "Genero", "Regiao_Filme", "filming_location", "production_company", "language", "win", "nomination", "oscar"}),
+				    #"Colunas Renomeadas3" = Table.RenameColumns(#"Colunas Reordenadas",{{"Duracao_minutos", "Duração_minutos"}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas3","h","",Replacer.ReplaceText,{"Duração_minutos"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","m","",Replacer.ReplaceText,{"Duração_minutos"}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(#"Valor Substituído1", "Duração_minutos", Splitter.SplitTextByDelimiter(" ", QuoteStyle.None), {"Duração_minutos.1", "Duração_minutos.2"}),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"Duração_minutos.1", Int64.Type}, {"Duração_minutos.2", Int64.Type}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado4", "DuracaoTotal_minutos", each ([Duração_minutos.1]*60) + [Duração_minutos.2]),
+				    #"Colunas Reordenadas1" = Table.ReorderColumns(#"Personalização Adicionada",{"ID", "Titulo", "Ano", "Duração", "DuracaoTotal_minutos", "Duração_minutos.1", "Duração_minutos.2", "rating_mpa", "rating_imdb", "vote", "budget", "gross_world_wide", "gross_us_canada", "gross_opening_weekend", "director", "writer", "star", "Genero", "Regiao_Filme", "filming_location", "production_company", "language", "win", "nomination", "oscar"}),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Colunas Reordenadas1",{"Duração_minutos.1", "Duração_minutos.2"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Colunas Removidas1","",null,Replacer.ReplaceValue,{"filming_location"}),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Valor Substituído2", "Personalizar", each if [DuracaoTotal_minutos] <= 65 then "Curta Metragem" else "Longa Metragem"),
+				    #"Colunas Removidas2" = Table.RemoveColumns(#"Coluna Condicional Adicionada",{"Personalizar"}),
+				    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Colunas Removidas2", "Personalizar", each if [DuracaoTotal_minutos] <= 65 then "Curtametragem " else "Longametragem"),
+				    #"Colunas Removidas3" = Table.RemoveColumns(#"Coluna Condicional Adicionada1",{"Titulo", "Duração", "DuracaoTotal_minutos", "rating_mpa", "rating_imdb", "vote", "budget", "gross_world_wide", "gross_us_canada", "gross_opening_weekend", "director", "writer", "star", "Genero", "Regiao_Filme", "filming_location", "production_company", "language", "win", "nomination", "oscar", "Personalizar"}),
+				    #"Duplicatas Removidas1" = Table.Distinct(#"Colunas Removidas3", {"ID"}),
+				    #"Duplicatas Removidas2" = Table.Distinct(#"Duplicatas Removidas1", {"ID"}),
+				    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas2", "Índice", 1, 1, Int64.Type)
+				in
+				    #"Índice Adicionado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

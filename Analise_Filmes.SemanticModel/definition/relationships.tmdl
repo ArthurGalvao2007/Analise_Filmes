@@ -1,0 +1,38 @@
+relationship 59cadd15-f62b-8311-af2e-81f95a8355f0
+	fromColumn: 1mdb_movies.writer
+	toColumn: DimEscritor.ID
+
+relationship bebc9585-897c-42e8-e782-712fc6a98a1e
+	isActive: false
+	fromColumn: 1mdb_movies.Genero
+	toColumn: DimGenero.ID
+
+relationship c1027ee6-f12d-224f-74dc-c11b369fd89a
+	isActive: false
+	fromColumn: 1mdb_movies.language
+	toColumn: DimIdioma.ID
+
+relationship feeccef1-6e56-1a08-eefd-a6e3d207705c
+	fromColumn: 1mdb_movies.filming_location
+	toColumn: DimLocalFilmagem.ID
+
+relationship 4e267e4a-b1df-3a84-7f61-30396e9672ca
+	fromColumn: 1mdb_movies.production_company
+	toColumn: DimProdutora.ID
+
+relationship 594f3aa8-e1b7-cb03-7e91-e9b360229392
+	fromColumn: 1mdb_movies.Regiao_Filme
+	toColumn: DimRegiao.ID
+
+relationship e7746c4c-9a0e-4314-f216-f30098b93798
+	fromColumn: 1mdb_movies.director
+	toColumn: DimDiretor.ID
+
+relationship 71ddd3fd-0bfa-7461-7780-f69f0b84dc2b
+	fromColumn: 1mdb_movies.Ano
+	toColumn: DimData.ID
+
+relationship 3480148f-d4d0-bca0-2fab-c78ef4b5307d
+	fromColumn: 1mdb_movies.star
+	toColumn: DimAtor.ID
+
